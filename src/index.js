@@ -19,12 +19,12 @@ fetchBreeds()
     refs.loader.hidden = true;
     refs.select.hidden = false;
     
-    // Инициализируйте SlimSelect для элемента выбора
+    
     const slim = new SlimSelect({
-      select: refs.select, // ссылка на ваш элемент выбора
+      select: refs.select, 
     });
   })
-  .catch((error) => { Notiflix.Notify.failure('Упс! Что-то пошло не так! Попробуйте перезагрузить страницу!') });
+  .catch((error) => { Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!') });
    
 refs.select.addEventListener('change', onSelect);
 
@@ -36,7 +36,7 @@ function onSelect(evt) {
     
     fetchCatByBreed(selectedBreed)
         .then(createCard)
-        .catch((error) => { Notiflix.Notify.failure('Упс! Что-то пошло не так! Попробуйте перезагрузить страницу!') });
+        .catch((error) => { Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!') });
 }
 
 function createCard(data) { 
