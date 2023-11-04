@@ -11,22 +11,36 @@ const refs = {
 };
 
 refs.loader.style.display = "none";
-refs.select.hidden = true;
-
+// refs.select.hidden = true;
+ 
 fetchBreeds()
   .then((data) => {
     createCatList(data);
-    refs.loader.hidden = true;
-    refs.select.hidden = false;
-    
-    
+    // refs.loader.hidden = true;
+    // refs.select.hidden = false;
     const slim = new SlimSelect({
-      select: refs.select, 
+        select: ".breed-select",
+        settings: {
+    showSearch: false,
+    placeholderText: 'Select cat breed',
+  },
+        
     });
+    
+    
   })
   .catch((error) => { Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!') });
-   
+  
 refs.select.addEventListener('change', onSelect);
+
+function createCatList(arr) {
+    // Добавляем placeholder в начало списка пород
+    const placeholderOption = '<option value="" disabled selected>Select cat breed</option>';
+    const breedOptions = arr.map(({ id, name }) => {
+        return `<option value="${id}">${name}</option>`;
+    });
+    refs.select.innerHTML = placeholderOption + breedOptions.join('');
+}
 
 function onSelect(evt) {
 
@@ -61,8 +75,3 @@ function createCardMarcup(url, description, temperament, name) {
     </div>`
 }
 
-function createCatList(arr) {
-   refs.select.innerHTML = arr.map(({ id, name }) => {
-        return `<option value="${id}">${name}</option>`
-    }).join('');
-}
