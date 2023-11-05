@@ -11,13 +11,12 @@ const refs = {
 };
 
 refs.loader.style.display = "none";
-// refs.select.hidden = true;
+refs.select.hidden = true;
  
 fetchBreeds()
   .then((data) => {
     createCatList(data);
-    // refs.loader.hidden = true;
-    // refs.select.hidden = false;
+    
     const slim = new SlimSelect({
         select: ".breed-select",
         settings: {
@@ -34,7 +33,7 @@ fetchBreeds()
 refs.select.addEventListener('change', onSelect);
 
 function createCatList(arr) {
-    // Добавляем placeholder в начало списка пород
+    
     const placeholderOption = '<option value="" disabled selected>Select cat breed</option>';
     const breedOptions = arr.map(({ id, name }) => {
         return `<option value="${id}">${name}</option>`;
